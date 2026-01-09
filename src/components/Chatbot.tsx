@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useMemo } from 'react';
 import { MessageSquare, X, Send, Bot, User, Loader2 } from 'lucide-react';
-import { GoogleGenerativeAI } from '@google/genai';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 
 interface Message {
   id: string;
@@ -39,8 +39,8 @@ const Chatbot = ({ isOpen, onToggle }: ChatbotProps) => {
 
   const model = useMemo(() => {
     if (!genAI) return null;
-    const geminiModel = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
-    console.log('🤖 Gemini model initialized:', 'gemini-1.5-flash');
+    const geminiModel = genAI.getGenerativeModel({ model: 'gemini-pro' });
+    console.log('🤖 Gemini model initialized:', 'gemini-pro');
     return geminiModel;
   }, [genAI]);
 
@@ -57,7 +57,7 @@ const Chatbot = ({ isOpen, onToggle }: ChatbotProps) => {
     const lowerMessage = userMessage.toLowerCase();
     
     if (lowerMessage.includes('food') || lowerMessage.includes('eat') || lowerMessage.includes('restaurant')) {
-      return "🍔 For food near VSSUT, I recommend:\n\n• **Sharma Dhaba** - Great thalis (₹60-100)\n• **Maa Tara Stall** - Authentic Odia food\n• **Biryani House** - Best biryani near campus\n• **Night Canteen** - Late night snacks\n\nCheck the Food section for more options!";
+      return "🍔 For food near VSSUT, I recommend:\n\n• **Dawat Burla** - Great thalis (₹120-250)\n• **Engineers' Bro Delight** - Authentic Odia food\n• **Friends Fast Food** - Best biryani near campus\n• **Night Canteen** - Late night snacks\n\nCheck the Food section for more options!";
     }
     
     if (lowerMessage.includes('transport') || lowerMessage.includes('auto') || lowerMessage.includes('taxi')) {
@@ -69,7 +69,7 @@ const Chatbot = ({ isOpen, onToggle }: ChatbotProps) => {
     }
     
     if (lowerMessage.includes('service') || lowerMessage.includes('xerox') || lowerMessage.includes('print')) {
-      return "🛠️ Services near campus:\n\n• **Shree Xerox** - ₹1/page B&W, 200m from gate\n• **Quick Stationery** - Inside campus\n• **Raju Mobile Repair** - 500m from campus\n• **Cycle Repair Point** - 100m from hostel\n\nXerox center is closest for printouts!";
+      return "🛠️ Services near campus:\n\n• **Campus Xerox Shop** - ₹1/page B&W, 200m from gate\n• **Quick Stationery** - Inside campus\n• **Raju Mobile Repair** - 500m from campus\n• **Cycle Repair Point** - 100m from hostel\n\nXerox center is closest for printouts!";
     }
     
     if (lowerMessage.includes('salon') || lowerMessage.includes('haircut') || lowerMessage.includes('hair')) {
